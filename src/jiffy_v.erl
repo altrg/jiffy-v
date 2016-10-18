@@ -119,6 +119,11 @@ handle({null}, null, Errors0, Validator, Stack0) ->
 handle({null}, Data0, Errors0, Validator, Stack0) ->
     fix(Validator, Data0, ?INVALID_NULL, Errors0, Stack0);
 
+handle({nil}, nil, Errors0, Validator, Stack0) ->
+    val(Validator, nil, Errors0, Stack0);
+handle({nil}, Data0, Errors0, Validator, Stack0) ->
+    fix(Validator, Data0, ?INVALID_NULL, Errors0, Stack0);
+
 handle(Type, Data, Errors, _Validator, _Stack) ->
     erlang:error({invalid_type, Type}),
     {ok, Errors, Data}.
